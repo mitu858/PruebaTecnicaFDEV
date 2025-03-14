@@ -1,0 +1,40 @@
+<p-card header="Lista de Personas">
+  <p-table *ngIf="(personas$ | async) as personas" [value]="personas" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon>
+        </th>
+        <th pSortableColumn="apellido">Apellido <p-sortIcon field="apellido"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-persona>
+      <tr *ngIf="personaEditando?.id !== persona.id">
+        <td>{{ persona.nombre }}</td>
+        <td>{{ persona.apellido }}</td>
+        <td>{{ persona.email }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" (click)="editar(persona)"
+            class="p-button-primary p-mr-2"></button>
+          <button pButton type="button" icon="pi pi-trash" (click)="eliminar(persona.id)"
+            class="p-button-danger"></button>
+        </td>
+      </tr>
+      <tr *ngIf="personaEditando && personaEditando.id === persona.id">
+        <td><input type="text" pInputText [(ngModel)]="personaEditando.nombre"></td>
+        <td><input type="text" pInputText [(ngModel)]="personaEditando.apellido"></td>
+        <td><input type="text" pInputText [(ngModel)]="personaEditando.email"></td>
+        <td>
+          <button pButton type="button" icon="pi pi-check" (click)="guardarEdicion()"
+            class="p-button-success p-mr-2"></button>
+          <button pButton type="button" icon="pi pi-times" (click)="cancelarEdicion()"
+            class="p-button-secondary"></button>
+        </td>
+      </tr>
+
+    </ng-template>
+  </p-table>
+</p-card>

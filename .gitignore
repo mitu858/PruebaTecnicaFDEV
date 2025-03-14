@@ -1,0 +1,64 @@
+# Ignorar configuraciones sensibles
+BackendAPI/appsettings.json
+
+# Ignorar Node.js y Angular
+frontend/node_modules/
+frontend/dist/
+npm-debug.log
+yarn-error.log
+
+# Ignorar compilación y caché de Angular
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/.angular/cache
+
+# Ignorar archivos de compilación de .NET
+BackendAPI/bin/
+BackendAPI/obj/
+
+# Ignorar entornos de desarrollo e IDEs
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Ignorar registros y archivos de log
+*.log
+libpeerconnection.log
+testem.log
+/connect.lock
+/coverage
+/typings
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de aplicaciones
+*.app
+*.exe
+*.war
+
+# Ignorar archivos multimedia grandes
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+.vs/
+frontend/.angular/cache/
+frontend/.angular/cache/
+frontend/.angular/cache/
+
+.fake

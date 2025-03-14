@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+p-card {
+  width: 100%;
+  max-width: 600px;
+  background: #fdf6e3; /* Fondo cálido */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.p-inputtext {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e0a96d;
+  background: #fffaf0;
+}
+
+.p-button {
+  background-color: #e67e22;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.p-button:hover {
+  background-color: #d35400;
+}
+
+@media (max-width: 768px) {
+  p-card {
+    width: 90%;
+  }
+}

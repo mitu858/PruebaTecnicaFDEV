@@ -1,0 +1,20 @@
+<p-card header="Agregar Persona">
+  <form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input pInputText id="nombre" formControlName="nombre" />
+    </div>
+
+    <div class="p-field">
+      <label for="apellido">Apellido</label>
+      <input pInputText id="apellido" formControlName="apellido" />
+    </div>
+
+    <div class="p-field">
+      <label for="email">Email</label>
+      <input pInputText id="email" formControlName="email" />
+    </div>
+
+    <button pButton type="submit" label="Guardar"></button>
+  </form>
+</p-card>
