@@ -53,7 +53,6 @@ export class PersonaEffects {
                 this.personaService.updatePersona(action.persona).pipe(
                     map(personaActualizada => {
                         if (!personaActualizada) {
-                            console.error("[persona.effects.ts] ⚠️ Error: El backend devolvió null en la actualización.");
                             return actualizarPersonaError({ error: "El backend devolvió null en la actualización." });
                         }
                         return actualizarPersonaSuccess({ persona: personaActualizada });

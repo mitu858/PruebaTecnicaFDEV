@@ -20,7 +20,6 @@ export const personaReducer = createReducer(
     on(cargarPersonasSuccess, (state, { personas }) => ({ ...state, personas })),
     on(crearPersonaSuccess, (state, { persona }) => ({ ...state, personas: [...state.personas, persona] })),
     on(actualizarPersonaSuccess, (state, { persona }) => {
-        console.log("Persona actualizada en el store:", persona);
         return {
             ...state,
             personas: state.personas.map(p => (p.id === persona.id ? persona : p))
