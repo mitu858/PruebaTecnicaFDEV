@@ -3,18 +3,29 @@
     <div class="p-field">
       <label for="nombre">Nombre</label>
       <input pInputText id="nombre" formControlName="nombre" />
+      <small *ngIf="personaForm.get('nombre')?.invalid && personaForm.get('nombre')?.touched" class="p-error">
+        El nombre es obligatorio
+      </small>
     </div>
 
     <div class="p-field">
       <label for="apellido">Apellido</label>
       <input pInputText id="apellido" formControlName="apellido" />
+      <small *ngIf="personaForm.get('apellido')?.invalid && personaForm.get('apellido')?.touched" class="p-error">
+        El apellido es obligatorio
+      </small>
     </div>
 
     <div class="p-field">
       <label for="email">Email</label>
       <input pInputText id="email" formControlName="email" />
+      <small *ngIf="personaForm.get('email')?.invalid && personaForm.get('email')?.touched" class="p-error">
+        Email inválido
+      </small>
     </div>
 
     <button pButton type="submit" label="Guardar"></button>
   </form>
 </p-card>
+
+<p-toast></p-toast>

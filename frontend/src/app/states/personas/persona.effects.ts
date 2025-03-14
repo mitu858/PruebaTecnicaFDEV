@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { PersonaService } from '../../services/persona.service';
+import { MessageService } from 'primeng/api';
 import {
     cargarPersonas,
     cargarPersonasSuccess,
@@ -15,12 +17,10 @@ import {
     eliminarPersonaSuccess,
     eliminarPersonaError
 } from './persona.actions';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Injectable()
 export class PersonaEffects {
-    constructor(private actions$: Actions, private personaService: PersonaService) { }
+    constructor(private actions$: Actions, private personaService: PersonaService, private messageService: MessageService) { }
 
     cargarPersonas$ = createEffect(() =>
         this.actions$.pipe(
@@ -39,8 +39,14 @@ export class PersonaEffects {
             ofType(crearPersona),
             mergeMap(action =>
                 this.personaService.createPersona(action.persona).pipe(
-                    map(persona => crearPersonaSuccess({ persona })),
-                    catchError(error => of(crearPersonaError({ error: error.message })))
+                    map(persona => {
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Persona creada correctamente' });
+                        return crearPersonaSuccess({ persona });
+                    }),
+                    catchError(error => {
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear la persona' });
+                        return of(crearPersonaError({ error: error.message }));
+                    })
                 )
             )
         )
@@ -52,9 +58,6 @@ export class PersonaEffects {
             mergeMap(action =>
                 this.personaService.updatePersona(action.persona).pipe(
                     map(personaActualizada => {
-                        if (!personaActualizada) {
-                            return actualizarPersonaError({ error: "El backend devolvió null en la actualización." });
-                        }
                         return actualizarPersonaSuccess({ persona: personaActualizada });
                     }),
                     catchError(error => {
@@ -76,5 +79,26 @@ export class PersonaEffects {
                 )
             )
         )
+    );
+    mostrarMensajeExito$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(actualizarPersonaSuccess),
+                tap(() => {
+                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Persona actualizada correctamente' });
+                })
+            ),
+        { dispatch: false }
+    );
+
+    mostrarMensajeError$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(actualizarPersonaError),
+                tap(() => {
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar la persona' });
+                })
+            ),
+        { dispatch: false }
     );
 }

@@ -16,7 +16,9 @@ import { PersonaEffects } from './states/personas/persona.effects';
 import { InputTextModule } from 'primeng/inputtext';
 import { PersonaPage } from './pages/persona/persona.page';
 import { FormsModule } from '@angular/forms';
-
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +37,11 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     EffectsModule.forRoot([PersonaEffects]),
     InputTextModule,
-    FormsModule
+    FormsModule,
+    ToastModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
