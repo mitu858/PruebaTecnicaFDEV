@@ -122,3 +122,23 @@ button[pButton]:hover {
   margin-top: 1rem;
   align-self: center;
 }
+
+.custom-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ff7f50;
+  padding-bottom: 0.5rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
